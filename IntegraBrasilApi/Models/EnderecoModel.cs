@@ -23,5 +23,4 @@ namespace IntegraBrasilApi.Models
         [JsonPropertyName("service")]
         public string? Servico { get; set; }
     }
-    }
 }
