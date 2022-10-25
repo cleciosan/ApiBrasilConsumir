@@ -6,22 +6,22 @@ namespace IntegraBrasilApi.Models
     public class EnderecoModel
     {
         [JsonPropertyName("cep")]
-        public string Cep { get; set; }
+        public string? Cep { get; set; }
 
         [JsonPropertyName("state")]
-        public string State { get; set; }
+        public string? State { get; set; }
 
         [JsonPropertyName("city")]
-        public string City { get; set; }
+        public string? City { get; set; }
 
         [JsonPropertyName("neighborhood")]
-        public string Neighborhood { get; set; }
+        public string? Neighborhood { get; set; }
 
         [JsonPropertyName("street")]
-        public string Street { get; set; }
+        public string? Street { get; set; }
 
         [JsonPropertyName("service")]
-        public string Service { get; set; }
+        public string? Service { get; set; }
     }
     }
 }
