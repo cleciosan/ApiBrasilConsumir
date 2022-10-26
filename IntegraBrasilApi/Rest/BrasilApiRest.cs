@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Dynamic;
 using System.Text.Json;
-using System.Threading.Tasks;
 using IntegraBrasilApi.Dtos;
 using IntegraBrasilApi.Interfaces;
 using IntegraBrasilApi.Models;
@@ -22,13 +19,22 @@ namespace IntegraBrasilApi.Rest
                 var responseBrasilApi = await client.SendAsync(request);
                 var contentResp = await responseBrasilApi.Content.ReadAsStringAsync();
                 var objResponse = JsonSerializer.Deserialize<EnderecoModel>(contentResp);
+
+                if (responseBrasilApi.IsSuccessStatusCode)
+                {
+                    response.CodigoHttp = responseBrasilApi.StatusCode;
+                    response.DadosRetorno = objResponse;
+                }
+                else
+                {
+                    response.CodigoHttp = responseBrasilApi.StatusCode;
+                    response.ErroRetorno = JsonSerializer.Deserialize<ExpandoObject>(contentResp);
+                }
+
+                return response;   
             }
 
-            if (responseBrasilApi.IsSuccessStatusCode)
-            {
-                response.CodigoHttp = responseBrasilApi.StatusCode;
-                response.DadosRetorno = ObjResponse;
-            }   
+            
         }
 
         public Task<ResponseGenerico<List<BancoModel>>> BuscarTodosBancos()
