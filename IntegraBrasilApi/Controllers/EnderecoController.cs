@@ -19,6 +19,13 @@ namespace IntegraBrasilApi.Controllers
             _enderecoService = enderecoService;
         }
 
+        
+        [HttpGet("busca/{cep}")]
+        [ProducesResponseType(StatusCode.Status200OK)]
+        [ProducesResponseType(StatusCode.Status400BadRequest)]
+        [ProducesResponseType(StatusCode.Status404NotFound)]
+        [ProducesResponseType(StatusCode.Status500InternalServerError)]
+
         public async Task<IActionResult> BuscarEndereco([FromRoute] string cep)
         {
             var response = await _enderecoService.BuscarEndereco(cep);
