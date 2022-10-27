@@ -20,9 +20,10 @@ namespace IntegraBrasilApi.Services
             _brasilApi = brasilApi;
         }
 
-        public Task<ResponseGenerico<List<BancoResponse>>> BuscarTodosBancos()
+        public async Task<ResponseGenerico<List<BancoResponse>>> BuscarTodos()
         {
-            throw new NotImplementedException();
+            var bancos = await _brasilApi.BuscarTodosBancos();
+            return _mapper.Map<ResponseGenerico<List<BancoResponse>>>(bancos);
         }
         public Task<ResponseGenerico<BancoResponse>> BuscaBancos(string codigoBanco)
         {
