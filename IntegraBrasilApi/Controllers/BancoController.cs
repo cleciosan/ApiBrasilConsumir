@@ -41,12 +41,12 @@ namespace IntegraBrasilApi.Controllers
         
         [HttpGet("busca/{codigoBanco}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Buscar([RegularExpression("^[0-9]*$")] string codigoBanco)
         {
-            var response = await _bancoService.BuscarBanco;
+            var response = await _bancoService.BuscarBanco(codigoBanco);
 
             if(response.CodigoHttp == HttpStatusCode.OK)
             {
